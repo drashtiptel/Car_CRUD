@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .navbar {
+      width: 100%;
+      background-color: rgb(240, 118, 169);
+      ;
+      /* padding: 10px 0; */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: right;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      padding: 10px 20px;
+    }
+
+
+    .navbar h1 {
+      color: #dcd8e2;
+      margin: 0;
+      width: 100%;
+      font-size: 50px;
+      padding-right: 750px;
+    }
+
+    .container {
+      text-align: center;
+      padding: 30px;
+      /* border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+      margin-top: 20px;
+    }
+
+
+
+    h1 {
+      margin-bottom: 100px;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 15px;
+      color: #0a0000;
+      background-color: #eceff3;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .button1 {
+      display: inline-block;
+      padding: 10px 20px;
+
+      margin: 10px;
+      font-size: 15px;
+      color: #0a0000;
+      background-color: #eceff3;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #28394b;
+      color: #ddd;
+    }
+
+    .button1:hover {
+      background-color: #28394b;
+      color: #ddd;
+    }
+
+
+  
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #28394b;
+      color: #f4e3e3;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      margin-left: auto;
+      margin-right: 10px;
+    }
+
+    .btn:hover {
+      background-color: rgb(241, 146, 222);
+    }
+
+    .h2 {
+      color: rgb(241, 146, 222);
+    }
+
+    input,
+    button {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  vertical-align: middle; /* Ensure content is vertically centered */
+  max-height: 50px; /* Limit the max height of the cells */
+  overflow: hidden; /* Hide any overflow content */
+  white-space: nowrap; /* Prevent text wrapping */
+  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Set specific widths for each column */
+table th:nth-child(1),
+table td:nth-child(1) {
+  width: 10%; /* Car Sno */
+}
+
+table th:nth-child(2),
+table td:nth-child(2) {
+  width: 25%; /* Car Name */
+}
+
+table th:nth-child(3),
+table td:nth-child(3) {
+  width: 25%; /* Car Model */
+}
+
+table th:nth-child(4),
+table td:nth-child(4) {
+  width: 15%; /* Car Price */
+}
+
+table th:nth-child(5),
+table td:nth-child(5) {
+  width: 15%; /* Car Brand */
+}
+
+table th:nth-child(6),
+table td:nth-child(6) {
+  width: 10%; /* Action */
+}
+
+/* Make the table responsive */
+@media screen and (max-width: 600px) {
+  table th,
+  table td {
+    display: block;
+    width: 100%;
+  }
+
+  table th {
+    text-align: right;
+  }
+
+  table td {
+    text-align: left;
+  }
+}
+
+
+    .pagination {
+      display: flex;
+      justify-content: right;
+      margin-top: 20px;
+    }
+
+    .pagination .page-item .page-link {
+      color: rgb(240, 118, 169);
+      ;
+    }
+
+    .pagination .page-item.active .page-link {
+      background-color: rgb(240, 118, 169);
+      ;
+      border-color: rgb(240, 118, 169);
+      ;
+      color: #fff;
+    }
+
+    .pagination .page-item .page-link:hover {
+      background-color: #151316;
+      border-color: #151316;
+      color: #fff;
+    }
+
+  
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+  height: auto; /* Adjust height automatically */
+}
+
+/* Responsive modal */
+@media screen and (max-width: 600px) {
+  .modal-content {
+    width: 90%; /* Mobile screen width adjustment */
+  }
+}
+
+
+    /* Add Animation */
+    @keyframes animateTop {
+      from {
+        top: -300px;
+        opacity: 0
+      }
+
+      to {
+        top: 0;
+        opacity: 1
+      }
+    }
+
+    /* Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* Button Styles */
+    .btn {
+      background-color: rgb(240, 118, 169);
+      /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      margin: 2px 2px;
+      cursor: pointer;
+      border-radius: 12px;
+      transition-duration: 0.4s;
+    }
+
+    .btn:hover {
+      background-color: rgb(34, 31, 31);
+      color: rgb(255, 247, 247);
+      border: 2px solid #0808080c;
+    }
+
+    /* Form Control Styles */
+    .form-control {
+      width: 100%;
+      padding: 5px;
+      margin: 5px 0 10px 0;
+      display: inline-block;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    #addButton {
+      background-color: #011218;
+      /* Blue */
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #addButton:hover {
+      background-color: rgb(240, 118, 169);
+    }
+
+    #button {
+      background-color: #011218;
+      /* Blue */
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #button:hover {
+      background-color: rgb(240, 118, 169);
+    }
+    #carRecords {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #carRecords th,
+    #carRecords td {
+      padding: 8px;
+      border: 1px solid #dddddd;
+      text-align: left;
+    }
+
+    #carRecords th {
+      background-color: #c7c0c7fe;
+      font-weight: bold;
+    }
+
+    #carRecords tbody tr:nth-child(even) {
+      background-color: rgb(215, 211, 218);
+    }
+
+    #carRecords tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .form-control {
+      border-radius: 0;
+      box-shadow: none;
+      border-color: #d2d6de;
+    }
+
+    .input-group {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      width: 100%;
+      padding-left: 1100px;
+    }
+
+    .input-sm {
+      height: 30px;
+      padding: 5px 10px;
+      font-size: 12px;
+      line-height: 1.5;
+      border-radius: 3px;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter {
+      text-align: right;
+    }
+    button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 8px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.update-button {
+  background-color: rgb(102, 178, 255);
+}
+
+.delete-button {
+  background-color: rgb(255, 102, 102);
+}
+
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div>
+      <i class="fa fa-car fa-5x" aria-hidden="true"></i>
+    </div>
+    <div>
+
+      <h1>Car World</h1>
+    </div>
+    <div>
+      <a href="registration.html" class="button1" id="registerButton">Register</a>
+      <a href="login.html" class="button" id="loginButton" hidden>Login</a>
+      <button id="logoutButton" class="button">Logout</button>
+
+    </div>
+  </nav>
+
+  <hr>
+  <button class="btn" onclick="openModal()"><i class="fas fa-plus"></i> Add Item</button>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h1>Add Car Details</h1>
+      <select id="carName" class="form-control">
+        <option value="">Select Car Name</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Honda">Honda</option>
+        <option value="BMW">BMW</option>
+      </select><br><br>
+      <select id="carModel" class="form-control">
+        <option value="">Select Car Model</option>
+        <option value="Camry">Camry</option>
+        <option value="Civic">Civic</option>
+        <option value="3 Series">3 Series</option>
+      </select><br><br>
+      <input type="number" id="carPrice" class="form-control" placeholder="Car Price"><br><br>
+      <select id="carBrand" class="form-control">
+        <option value="">Select Car Brands</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Honda">Honda</option>
+        <option value="BMW">BMW</option>
+      </select><br><br>
+      <button id="addButton" class="btn">Add Car</button>
+    </div>
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <div class="form-group">
+    <div class="input-group">
+
+      <input type="text" name="searchContent" id="searchInput" placeholder="Search by car name..." class="form-control" onkeyup="handleSearchInput()" />
+     
+      
+    </div>
+  </div>
+
+  <div>
+    <label for="pageSizeSelect">Display:</label>
+    <select id="pageSizeSelect" onchange="changePageSize()">
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5" >5</option>
+      <option value="10" selected>10</option>
+    </select>
+  </div>
+
+
+
+<!-- update model -->
+  <div id="updateModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="openUpdateModal()">&times;</span>
+      <h1>Update Car Details</h1>
+      <select id="CarName" class="form-control">
+        <option value="">Select Car Name</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Honda">Honda</option>
+        <option value="BMW">BMW</option>
+      </select><br><br>
+      <select id="CarModel" class="form-control">
+        <option value="">Select Car Model</option>
+        <option value="Camry">Camry</option>
+        <option value="Civic">Civic</option>
+        <option value="3 Series">3 Series</option>
+      </select><br><br>
+      <input type="number" id="CarPrice" class="form-control" placeholder="Car Price"><br><br>
+      <select id="CarBrand" class="form-control">
+        <option value="">Select Car Brands</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Honda">Honda</option>
+        <option value="BMW">BMW</option>
+      </select><br><br>
+      <button id="button" onclick="updateCar()">Update</button>
+    </div>
+  </div>
+
+  <!-- Table to display items -->
+
+  <hr>
+  <table id="carRecords">
+    <thead>
+      <tr>
+        <th>Car Sno</th>
+        <th>Car Name</th>
+        <th>Car Model</th>
+        <th>Car Price</th>
+        <th>Car Brand</th>
+        <th> Action </th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Existing items will be listed here -->
+    </tbody>
+  </table>
+
+  <!-- Pagination controls -->
+  <div id="pagination">
+    <ul class="pagination justify-content-center" id="paginationList"></ul>
+  </div>
+
+  
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Include your script file -->
+  <script src="script.js"></script>
+
+
+  <script>
+    document.getElementById('registerButton').addEventListener('click', function () {
+      window.location.href = 'registration.html';
+    });
+
+    document.getElementById('loginButton').addEventListener('click', function () {
+      window.location.href = 'login.html';
+    });
+
+
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    function openModal() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    function closeModal() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        closeModal();
+      }
+    }
+
+    function fetchDataAndReload() {
+      // Call function to fetch data
+      displayCarRecords(1);
+
+      // Reload page after 1 second
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    }
+
+
+    function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+    // Add click event handler for the "Add Car" button
+
+    
+    $("#addButton").on("click", function () {
+      console.log("Inside click event handler");
+      createCar();
+
+    });
+
+    // Function to create a new car
+    function createCar() {
+      var carName = $("#carName").val();
+      var carModel = $("#carModel").val();
+      var carPrice = $("#carPrice").val();
+      var carBrand = $("#carBrand").val();
+
+      var requestData = {
+        carName: carName,
+        carModel: carModel,
+        carPrice: carPrice,
+        carBrand: carBrand
+      };
+      const token = getCookie('token')
+      // Validate the input
+      if (carName && carModel && carPrice && carBrand)
+       {
+        $.ajax({
+          type: "POST",
+          url: "http://127.0.0.1:5000/add-car",
+          dataType: "json",// Change the URL to your backend endpoint
+          contentType: "application/json",
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          data: JSON.stringify(requestData),
+          success: function (response) {
+            // Handle the success response
+            alert(response.message);
+            fetchDataAndReload()// You can perform further actions here, like displaying a success message or refreshing the data.
+          },
+
+          error: function (error) {
+            // Handle the error response
+            console.error("Error adding car:", error.status, error.responseJSON.error);
+            // You can display an error message to the user or perform other error handling actions.
+          }
+        });
+        closeModal();
+        displayCarRecords()
+
+        //reload auto in home page
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
+      }
+      else {
+        // Handle validation errors
+        console.error("Validation error: Please fill in all fields.");
+        // You can display an error message to the user or perform other validation error handling actions.
+      }
+    }
+
+    var currentCarId;
+
+    function openUpdateModal(id) {
+      // Make AJAX request to fetch car details by ID
+      currentCarId = id;
+      var car = $("#carRecords tbody tr").filter(function () {
+        return $(this).find("td").eq(0).text() == id;
+      });
+
+      $("#CarName").val(car.find("td").eq(1).text());
+      $("#CarModel").val(car.find("td").eq(2).text());
+      $("#CarPrice").val(car.find("td").eq(3).text());
+      $("#CarBrand").val(car.find("td").eq(4).text());
+
+      $("#updateModal").css("display", "block");
+    }
+
+    function updateCar() {
+      var data = {
+        CarName: $("#CarName").val(),
+        CarModel: $("#CarModel").val(),
+        CarPrice: $("#CarPrice").val(),
+        CarBrand: $("#CarBrand").val()
+      };
+
+      console.log("Data being sent:", data); // Log the data being sent
+      const token = getCookie('token')
+      $.ajax({
+        type: "PUT",
+        url: "http://localhost:5000/update-car/" + currentCarId,
+        dataType: "json",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        success: function (response) {
+          console.log("Server response:", response); // Log the server response
+          alert(response.message);
+          $("#updateModal").css("display", "none");
+          fetchDataAndReload()
+
+        },
+
+        error: function (xhr, status, error) {
+          console.error("Error occurred:", xhr.responseText); // Log the error response
+          alert("Error: " + xhr.responseText);
+        }
+      });
+    }
+
+    $(".close").click(function () {
+      $("#updateModal").css("display", "none");
+    });
+
+    window.onclick = function (event) {
+      if (event.target == document.getElementById('updateModal')) {
+        $("#updateModal").css("display", "none");
+      }
+    }
+
+var currentPage = 1; // Initialize current page
+var pageSize = 10; // Default page size
+var searchQuery = ''; // Initialize search query
+var totalPages = 0; // Initialize totalPages
+
+// Function to display car records for a specific page
+function displayCarRecords(pageSize, pageNumber, searchQuery) {
+  const token = getCookie('token')
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:5000/get-car",
+    dataType: "json",
+    contentType: "application/json",
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    data: JSON.stringify({ pageSize: pageSize, pageNumber: pageNumber, searchQuery: searchQuery }),
+    
+    success: function(response) {
+      var carRecords = response.cars;
+      var carListHtml = "";
+      carRecords.forEach(function(car) {
+        carListHtml += "<tr>" +
+          "<td>" + car.carID + "</td>" +
+          "<td>" + car.carName + "</td>" +
+          "<td>" + car.carModel + "</td>" +
+          "<td>" + car.carPrice + "</td>" +
+          "<td>" + car.carBrand + "</td>" +
+          "<td>" +
+          "<button onclick='openUpdateModal(" + car.carID + ")' class='update-button'>Update</button>" +
+          "<button onclick='deleteRow(this, " + car.carID + ")' class='delete-button'>Delete</button>" +
+          "</td>" +
+          "</tr>";
+      });
+      console.log("$$$$$$$$$$$$",searchQuery);
+      $("#carRecords tbody").html(carListHtml);
+      
+      // Update totalPages and pagination
+      totalPages = response.totalPages;
+      updatePagination(totalPages);
+    },
+    error: function(error) {
+      console.error("Error fetching car records:", error.status, error.responseJSON ? error.responseJSON.error : 'Unknown error');
+      var errorMessage = error.responseJSON && error.responseJSON.error ? error.responseJSON.error : 'An unknown error occurred';
+      alert("Error: " + errorMessage);
+    }
+  });
+}
+
+// Function to update pagination links
+function updatePagination(totalPages) {
+  var paginationList = $("#paginationList");
+  paginationList.empty(); // Clear existing pagination links
+
+  // Add previous button
+  if (currentPage > 1) {
+    paginationList.append('<li class="page-item"><a class="page-link" href="#" onclick="prevPage()">Previous</a></li>');
+  } else {
+    paginationList.append('<li class="page-item disabled"><a class="page-link">Previous</a></li>');
+  }
+
+  // Add page numbers
+  if (totalPages <= 10) {
+    for (var i = 1; i <= totalPages; i++) {
+      if (i === currentPage) {
+        paginationList.append('<li class="page-item active"><a class="page-link">' + i + '</a></li>');
+      } else {
+        paginationList.append('<li class="page-item"><a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a></li>');
+      }
+    }
+  } else {
+    if (currentPage <= 4) {
+      for (var i = 1; i <= 5; i++) {
+        if (i === currentPage) {
+          paginationList.append('<li class="page-item active"><a class="page-link">' + i + '</a></li>');
+        } else {
+          paginationList.append('<li class="page-item"><a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a></li>');
+        }
+      }
+      paginationList.append('<li class="page-item"><a class="page-link">...</a></li>');
+      paginationList.append('<li class="page-item"><a class="page-link" href="#" onclick="changePage(' + totalPages + ')">' + totalPages + '</a></li>');
+    } else if (currentPage > totalPages - 4) {
+      paginationList.append('<li class="page-item"><a class="page-link" href="#" onclick="changePage(1)">1</a></li>');
+      paginationList.append('<li class="page-item"><a class="page-link">...</a></li>');
+      for (var i = totalPages - 4; i <= totalPages; i++) {
+        if (i === currentPage) {
+          paginationList.append('<li class="page-item active"><a class="page-link">' + i + '</a></li>');
+        } else {
+          paginationList.append('<li class="page-item"><a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a></li>');
+        }
+      }
+    } else {
+      paginationList.append('<li class="page-item"><a class="page-link" href="#" onclick="changePage(1)">1</a></li>');
+      paginationList.append('<li class="page-item"><a class="page-link">...</a></li>');
+      for (var i = currentPage - 2; i <= currentPage + 2; i++) {
+        if (i === currentPage) {
+          paginationList.append('<li class="page-item active"><a class="page-link">' + i + '</a></li>');
+        } else {
+          paginationList.append('<li class="page-item"><a class="page-link" href="#" onclick="changePage(' + i + ')">' + i + '</a></li>');
+        }
+      }
+      paginationList.append('<li class="page-item"><a class="page-link">...</a></li>');
+      paginationList.append('<li class="page-item"><a class="page-link" href="#" onclick="changePage(' + totalPages + ')">' + totalPages + '</a></li>');
+    }
+  }
+
+  // Add next button
+  if (currentPage < totalPages) {
+    paginationList.append('<li class="page-item"><a class="page-link" href="#" onclick="nextPage()">Next</a></li>');
+  } else {
+    paginationList.append('<li class="page-item disabled"><a class="page-link">Next</a></li>');
+  }
+}
+
+// Function to change page
+function changePage(pageNumber) {
+  currentPage = pageNumber;
+  displayCarRecords(pageSize, currentPage, searchQuery);
+}
+
+
+// Function to go to previous page
+function prevPage() {
+  if (currentPage > 1) {
+    currentPage--;
+    displayCarRecords(pageSize, currentPage, searchQuery);
+  }
+}
+
+// Function to go to next page
+function nextPage() {
+  if (currentPage < totalPages) {
+    currentPage++;
+    displayCarRecords(pageSize, currentPage, searchQuery);
+  }
+}
+
+// Function to handle page size change
+function changePageSize() {
+  var selectedValue = document.getElementById("pageSizeSelect").value;
+  pageSize = parseInt(selectedValue);
+  currentPage = 1; // Reset current page to 1 when changing page size
+  displayCarRecords(pageSize, currentPage, searchQuery);
+}
+
+// Function to handle search input
+function handleSearchInput() {
+  searchQuery = document.getElementById("searchInput").value;
+  currentPage = 1; // Reset to first page on new search
+  displayCarRecords(pageSize, currentPage, searchQuery);
+}
+
+$(document).ready(function() {
+  displayCarRecords(pageSize, currentPage, searchQuery);
+});
+
+    // delete record 
+
+    function deleteRow(button, carID) {
+      const token = getCookie('token')
+      // Send DELETE request to delete the car record
+      $.ajax({
+        type: "DELETE",
+        url: "http://127.0.0.1:5000/delete-car/" + carID,
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        success: function (response) {
+          // Handle the success response
+          alert(response.message);
+          // You can perform further actions here, like removing the deleted row from the UI.
+          $(button).closest('tr').remove(); // Remove the table row containing the deleted car
+          fetchDataAndReload()
+        },
+
+        error: function (error) {
+          // Handle the error response
+          console.error("Error deleting car:", error.status, error.responseJSON.error);
+          // You can display an error message to the user or perform other error handling actions.
+        }
+      });
+    }
+
+//logout 
+
+    document.addEventListener('DOMContentLoaded', function() {
+    const logoutButton = document.getElementById('logoutButton');
+    
+    logoutButton.addEventListener('click', function() {
+        logoutUser();
+    });
+    
+
+    function logoutUser() {
+        const token = getCookie('token')
+        document.cookie = 'token=; Expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/templates; domain=127.0.0.1; SameSite=Lax';
+
+        localStorage.clear(); // Clear all local storage
+
+        // Optionally, send a logout request to the server if needed
+        fetch('http://127.0.0.1:5000/logout', {
+            method: 'POST',
+            headers: {
+          'Authorization': 'Bearer ' + token
+        },
+            body: JSON.stringify({ message: "User is logging out" })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Logout successful:', data);
+
+            //back space 
+            history.replaceState(null, null, 'login.html');
+
+            // Redirect to the login page or home page after successful logout
+            window.location.href = 'login.html'; // Change this to your login page URL
+        })
+        .catch(error => console.error('Logout error:', error));
+
+    }
+});
+
+</script>
+</body>
+
+</html>

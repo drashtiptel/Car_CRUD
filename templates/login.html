@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            display: block;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            width: 20px;
+            /* Adjust the size as needed */
+            height: 20px;
+            /* Adjust the size as needed */
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(240, 118, 169);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #071b30;
+        }
+
+        div a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        div a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-secondary {
+            background-color: rgb(73, 69, 71);
+            border: #111111;
+
+        }
+
+        .btn-secondary:hover {
+            background-color: #111111;
+            color: rgb(247, 239, 239);
+        }
+
+        .btn-primary {
+            background-color: rgb(240, 118, 169);
+            border: #111111;
+        }
+
+        .btn-primary:hover {
+            background-color: #111111;
+            color: rgb(247, 239, 239);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Login</h2>
+        <form id="loginForm" action="/login" method="post" onsubmit="return validateForm()">
+
+            <div class="input-container">
+                <input class="form-control" type="text" placeholder="Email address" id="emaillogin" name="email"
+                    required>
+            </div>
+            <div class="input-container">
+                <input class="form-control" type="password" placeholder="Password" id="passwordlogin" name="password"
+                    required>
+                <img id="togglePassword" class="toggle-password" src="/templates/img/eye-close.jpg"
+                    alt="Toggle Password Visibility">
+            </div>
+
+
+            <button type="submit">Log In</button><br><br>
+
+            <div>
+                <a href="registration.html" id="createAccountButton">Create an
+                    Account</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#" id="forgotPassword">Forgot Password?</a>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog"
+        aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+
+                </div>
+                <div class="modal-body">
+                    <form id="forgotPasswordForm">
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitEmail">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- OTP Modal -->
+    <div class="modal fade" id="otpModal" tabindex="-1" role="dialog" aria-labelledby="otpModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="otpModalLabel">Enter OTP</h5>
+
+                </div>
+                <div class="modal-body">
+                    <form id="otpForm">
+                        <div class="form-group">
+                            <label for="otp">OTP</label>
+                            <input type="text" class="form-control" id="otp"
+                                placeholder="Enter the OTP sent to your email" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitOtp">Submit</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal fade" id="passwordResetModal" tabindex="-1" role="dialog"
+        aria-labelledby="passwordResetModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordResetModalLabel">Reset Password</h5>
+
+                </div>
+                <div class="modal-body">
+                    <form id="passwordResetForm">
+                        <div class="form-group">
+                            <label for="password">New Password</label>
+                            <input type="password" class="form-control" id="password"
+                                placeholder="Enter your new password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cnpassword">Confirm New Password</label>
+                            <input type="password" class="form-control" id="cnpassword"
+                                placeholder="Enter your new password" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitPassword">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include jQuery first, then Popper.js, and then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            // Form submission handler
+            $('#loginForm').submit(function (event) {
+                event.preventDefault();
+                // Prevent default form submission
+                console.log("click");
+                var jsonData = {
+                    "email": $("#emaillogin").val(),
+                    "password": $("#passwordlogin").val(),
+                };
+
+                // Send AJAX request
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://127.0.0.1:5000/login', // Your Flask backend URL
+                    contentType: 'application/json',
+                    data: JSON.stringify(jsonData),
+                    success: function (response) {
+                        // Handle success response
+                        console.log(response);
+                        console.log(response.token);
+                        alert('Login successful!');
+                        // Assuming you get the token after a successful login
+                        localStorage.setItem('token', document.cookie);
+                        // Store the token in a cookie or local storage
+                        document.cookie = 'token=' + response.token;
+
+                        // Redirect to home page or perform other actions
+                        window.location.href = 'home.html';
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error response
+                        console.error(xhr.responseText);
+                        alert('Login failed. Please try again.');
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            var emailForOTP;
+            var closeModalOnError = true; // Flag to determine if modal should close on error
+            // Show the modal when the "Forgot Password?" link is clicked
+            $('#forgotPassword').click(function (event) {
+                event.preventDefault();
+                $('#forgotPasswordModal').modal('show');
+            });
+
+            // Handle form submission within the modal
+            $('#submitEmail').click(function () {
+                var email = $("#email").val();
+                if (email) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://127.0.0.1:5000/forgot-password', // URL for forgot password API
+                        contentType: 'application/json',
+                        data: JSON.stringify({ "email": email }),
+                        success: function (response) {
+                            emailForOTP = email;
+                            //alert('Password reset link sent to your email.');
+                            $('#forgotPasswordModal').modal('hide');
+                            $('#otpModal').modal('show');
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(xhr.responseText);
+                            var response = JSON.parse(xhr.responseText);
+                            alert(response.message);
+                            closeModalOnError = false; // Do not close the modal
+                        }
+                    });
+                } else {
+                    alert('Please enter your email address.');
+                }
+            });
+            // Handle closing of the error alert
+            $(document).on('click', '.close', function () {
+                if (closeModalOnError) {
+                    $('#forgotPasswordModal').modal('hide');
+                }
+                closeModalOnError = true; // Reset the flag for next time
+            });
+            $('#submitOtp').click(function () {
+                var otp = $("#otp").val();
+                if (otp) {
+                    // Submit emailForOTP and otp to verify the OTP
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://127.0.0.1:5000/verify-otp', // URL for OTP verification
+                        contentType: 'application/json',
+                        data: JSON.stringify({ "email": emailForOTP, "otp": otp }),
+                        success: function (response) {
+                            //alert('OTP verification successful.');
+                            $('#otpModal').modal('hide');
+                            $('#passwordResetModal').modal('show');
+                            // Perform further actions after successful OTP verification
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(xhr.responseText);
+                            var response = JSON.parse(xhr.responseText);
+                            alert(response.error);
+                        }
+                    });
+                } else {
+                    alert('Please enter the OTP.');
+                }
+            });
+            // Handle password reset form submission
+            $('#submitPassword').click(function () {
+                var password = $("#password").val();
+                var cnpassword = $("#cnpassword").val();
+                if (password && cnpassword) {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://127.0.0.1:5000/reset-password', // URL for password reset API
+                        contentType: 'application/json',
+                        data: JSON.stringify({ "email": emailForOTP, "password": password, "cnpassword": cnpassword }), // Use emailForOTP obtained during OTP verification
+                        success: function (response) {
+                            alert('Password reset successful.');
+                            $('#passwordResetModal').modal('hide');
+                            // Perform further actions after successful password reset
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(xhr.responseText);
+                            var response = JSON.parse(xhr.responseText);
+                            alert(response.error);
+                        }
+                    });
+                } else {
+                    alert('Please enter your new password.');
+                }
+            });
+
+        });
+
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            // Toggle the type attribute
+            const passwordField = document.getElementById('passwordlogin');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+
+            // Toggle the eye images
+            this.src = type === 'password' ? '/templates/img/eye-closed.jpg' : '/templates/img/eye-open1.png';
+        });
+
+
+
+    </script>
+</body>
+
+</html>

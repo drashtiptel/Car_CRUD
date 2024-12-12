@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Form Container */
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 20px 19px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    background-color:rgb(240, 118, 169);
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background-color: #030303e1;
+}
+
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <form id="registration" action="/register" method="post">
+           
+            <input type="text" id="fname" name="fname" placeholder="First Name" required><br>
+
+           
+            <input type="text" id="lname" name="lname" placeholder="Last Name" required><br>
+            
+           
+            <input type="password" id="password" name="password" placeholder="Password" required><br>
+
+            
+            <input type="text" id="contactno" name="contactno" placeholder="Contact Number" required><br>
+
+         
+            <input type="email" id="email" name="email" placeholder="Email" required><br>
+
+            <!-- Add more fields here as needed -->
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+    $(document).ready(function(){
+    $("#registration").submit(function(event){
+        event.preventDefault();
+        
+        // Collect form data and convert it to a JSON object
+        var formData = {};
+        $(this).serializeArray().forEach(function(item) {
+            formData[item.name] = item.value;
+        });
+
+        // Assume the token is stored in a variable or obtained from localStorage/sessionStorage
+        var token = localStorage.getItem('authToken');  // or however you store your token
+
+        // Debugging: log the JSON form data
+        console.log("Form Data: ", JSON.stringify(formData));
+
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:5000/register",
+            data: JSON.stringify(formData),
+            contentType: "application/json",
+            headers: {
+                'Authorization': 'Bearer ' + token  // Include the token in the request headers
+            },
+            success: function(response){
+                alert(response);
+                window.location.href = "login.html";
+            },
+            error: function(xhr, status, error){
+                // Debugging: log the error details
+                console.error("Status: ", status);
+                console.error("Error: ", error);
+                console.error("Response Text: ", xhr.responseText);
+
+                alert("Error occurred while registering.");
+            }
+        });
+    });
+});
+function getToken() {
+    $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:5000/login",
+        data: JSON.stringify({username: 'user', password: 'pass'}),
+        contentType: "application/json",
+        success: function(response){
+            var token = response.token;  // Assuming the token is in the response
+            localStorage.setItem('authToken', token);  // Store the token
+        },
+        error: function(xhr, status, error){
+            console.error("Failed to get token: ", error);
+        }
+    });
+}
+
+    </script>
+</body>
+</html>
